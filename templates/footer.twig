@@ -1,1 +1,8 @@
-Copyright {{"now"|date('Y')}}
+{# <p class="footer__item">© polymode studio 2014—{{"now"|date('Y')}}</p> #}
+<p class="footer__item">{{ options.copyright }}</p>
+<p class="footer__item">{{ options.additional_info }}</p>
+<p class="footer__item">
+	{% for link_item in options.links %}
+		<a href="{{ link_item.link.url }}" class="footer__link" target="{{ link_item.link.target }}">{{ link_item.link.title }}</a>
+	{% endfor %}
+</p>

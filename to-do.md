@@ -1,0 +1,11 @@
+- [x] load fonts
+- [x] set base styles
+- [x] set base type styles
+- [x] navigation styles
+- [x] footer styles
+- [x] home page
+- [x] project pages
+- [x] studio page
+- [x] learning page
+- [x] play page
+- [ ] mobile styles

@@ -1,0 +1,45 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<main class="learn__grid">
+		<article class="learn__header">
+			<section class="learn__short-description">
+				{{ page.meta('short_description') }}
+			</section>
+			<section class="learn__long-description">
+				{{ page.meta('long_description') }}
+			</section>
+		</article>
+		<article class="opportunities">
+			<div class="opportunity__spacer"></div>
+			{% for opportunity in opportunities %}
+				<article class="opportunity">
+					<div class="opportunity__tags">
+						{% for type in opportunity.meta('type_of_opportunity') %}
+							<p class="opportunity__tag">{{ type.name }}</p>
+						{% endfor %}
+					</div>
+					<h2 class="opportunity__title">{{ opportunity.title }}
+						{% if opportunity.subtitle %}
+							<span class="opportunity__subtitle">{{ opportunity.subtitle }}</span>
+						{% endif %}
+					</h2>
+					<img src="{{ opportunity.meta('thumbnail_image').url }}" alt="{{ opportunity.meta('thumbnail_image').alt }}" class="opportunity__image">
+					<div class="opportunity__description">
+						{{ opportunity.meta('description') }}
+					</div>
+					{% if opportunity.links %}
+						{% for item in opportunity.meta('links') %}
+							{% if item.link.target == "_blank" %}
+								{% set link_class = "external" %}
+							{% else %}
+								{% set link_class = "internal" %}
+							{% endif %}
+							<a href="{{ item.link.url }}" class="opportunity__link opportunity__link--{{ link_class }}" target="{{ item.link.target }}">{{ item.link.title }}</a>
+						{% endfor %}
+					{% endif %}
+				</article>
+			{% endfor %}
+		</article>
+	</main>
+{% endblock %}

@@ -1,0 +1,34 @@
+/* --------------------------------------------------------
+RESPONSIVE QUERY MIXIN
+Usage Example: 
+    @include mixins.respond-above(s-l) {
+        // color: red;
+    };
+The arguments can be any of the variable key names in ../abstracts/_responsize-sizes.scss.
+-------------------------------------------------------- */
+@mixin respond-above($breakpoint) {
+    $queries: "screen and (min-width: #{$breakpoint})";
+    @media #{$queries} {
+        @content;
+    }
+}
+
+@mixin respond-below($breakpoint) {
+    $queries: "screen and (max-width: #{$breakpoint})";
+
+    @media #{$queries} {
+        @content;
+    }
+}
+
+/* --------------------------------------------------------
+GRID MIXIN
+Usage Example: 
+    @include mixins.columns(5);
+The arguments can be any of the variable key names in ../abstracts/_responsize-sizes.scss.
+-------------------------------------------------------- */
+@mixin columns($widthColNums, $marginColNums: 0) {
+    flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+    width: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+    margin-right: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + var(--grid-col-gutter));
+}

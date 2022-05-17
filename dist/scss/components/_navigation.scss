@@ -1,0 +1,122 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.content-wrapper {
+    margin-top: var(--spacing-xl);
+}
+
+.header {
+}
+
+.header__content {
+    position: fixed;
+    top: 0;
+    background-color: var(--color-background);
+    width: 100%;
+    z-index: 100;
+    background: linear-gradient(var(--color-background) 60%, var(--color-transparent));
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.header__primary {
+    display: flex;
+    padding: var(--spacing-s) var(--spacing-s) var(--spacing-l) var(--spacing-s);
+    z-index: 20;
+    @include mixins.respond-above(variables.$break-m) {
+        padding: var(--spacing-s) var(--spacing-m) var(--spacing-l) var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        padding: var(--spacing-s) var(--spacing-xl) var(--spacing-l) var(--spacing-xl);
+    }
+}
+
+.header__hamburger {
+    margin-right: var(--spacing-xs);
+    margin-top: 3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    width: var(--spacing-l);
+
+    &.show {
+        display: block;
+    }
+
+    svg {
+        margin-top: 1px;
+        height: calc(var(--type-l) - 4px);
+    }
+}
+
+.header__logo {
+    @extend %nav-title;
+    transition: 0.3s;
+
+    &.show {
+        font-variation-settings: "RLNS" 1000;
+    }
+}
+
+.header__page-title {
+    @extend %nav-title-page;
+    padding-left: var(--spacing-xs);
+    line-height: 100%;
+}
+
+.header__secondary {
+    margin: 0;
+    padding: var(--spacing-xxl) var(--spacing-s);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    box-sizing: border-box;
+    background-color: var(--color-background-overlay);
+    display: none;
+
+    @include mixins.respond-above(variables.$break-m) {
+        padding: var(--spacing-xxl) var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        padding: var(--spacing-xxl) var(--spacing-xl);
+    }
+
+    &.show {
+        display: block;
+    }
+}
+
+.header__page {
+    list-style: none;
+    margin-bottom: var(--spacing-s);
+    @extend %nav-item;
+
+    a {
+        text-decoration: none;
+        color: var(--color-text);
+        transition: 0.3s;
+
+        &:hover {
+            font-variation-settings: "RLNS" 1000;
+            color: var(--color-primary-1);
+        }
+    }
+}
+
+.header__page--current {
+    a {
+        @extend %nav-item-alt;
+        color: var(--color-primary-1);
+    }
+}
+
+.header__overlay {
+    overflow: hidden;
+}

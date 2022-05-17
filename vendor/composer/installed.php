@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '60e97253753089ce72f596cdfe88b6fcfc7d44af',
         'name' => 'upstatement/timber-starter-theme',
         'dev' => true,
     ),
@@ -347,12 +347,12 @@
             'dev_requirement' => false,
         ),
         'upstatement/timber-starter-theme' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '60e97253753089ce72f596cdfe88b6fcfc7d44af',
             'dev_requirement' => false,
         ),
         'webmozart/assert' => array(

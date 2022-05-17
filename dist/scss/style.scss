@@ -1,19 +1,28 @@
 // Base
-@use "base/normalize";
-@use "base/base";
+@import "base/normalize";
+@import "base/base";
 
 // Components
-@use "components/component";
+@import "components/carousel";
+@import "components/navigation";
+@import "components/footer";
 
 // Layout
-@use "layout/layout";
 
 // Themes
-@use "themes/theme";
-@use "themes/admin";
+// @import "themes/theme";
+// @import "themes/admin";
 
 // Pages
-@use "pages/page";
+@import "pages/home";
+@import "pages/project";
+@import "pages/learn";
+@import "pages/about";
+@import "pages/play";
 
 // Vendors
-// @use "vendors/" as ;
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+@import "node_modules/slick-carousel/slick/slick.scss";
+@import "node_modules/slick-carousel/slick/slick-theme.scss";
+@import "vendors/carousel-overrides";

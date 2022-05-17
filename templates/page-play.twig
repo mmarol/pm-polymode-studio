@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+
+{% set content_class = "content-play" %}
+{% set body_class = "body-play" %}
+
+{% block head %}
+	<style>{{page.css}}</style>
+{% endblock %}
+
+{% block content %}
+	{{ page.html }}
+	<script>{{ page.javascript }}</script>
+{% endblock %}

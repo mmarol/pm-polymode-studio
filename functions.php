@@ -108,23 +108,23 @@ class StarterSite extends Timber\Site
 		if (function_exists('acf_add_options_page')) {
 
 			acf_add_options_page(array(
-				'page_title'     => 'Global Page Settings',
-				'menu_title'    => 'Global Page Settings',
-				'menu_slug'     => 'global-page-settings',
+				'page_title'     => 'Footer',
+				'menu_title'    => 'Footer',
+				'menu_slug'     => 'footer',
 				'capability'    => 'edit_posts',
 			));
 
-			acf_add_options_sub_page(array(
-				'page_title'     => 'Global Header Settings',
-				'menu_title'    => 'Header',
-				'parent_slug'    => 'global-page-settings',
-			));
+			// acf_add_options_sub_page(array(
+			// 	'page_title'     => 'Global Header Settings',
+			// 	'menu_title'    => 'Header',
+			// 	'parent_slug'    => 'global-page-settings',
+			// ));
 
-			acf_add_options_sub_page(array(
-				'page_title'     => 'Global Footer Settings',
-				'menu_title'    => 'Footer',
-				'parent_slug'    => 'global-page-settings',
-			));
+			// acf_add_options_sub_page(array(
+			// 	'page_title'     => 'Global Footer Settings',
+			// 	'menu_title'    => 'Footer',
+			// 	'parent_slug'    => 'global-page-settings',
+			// ));
 		}
 	}
 

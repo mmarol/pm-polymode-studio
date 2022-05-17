@@ -1,10 +1,9 @@
-@use "../abstracts/colors";
 @use "../abstracts/type-styles";
-@use "../abstracts/spacing";
+@use "../abstracts/variables";
 
 body {
-    background-color: colors.$secondary-color-3;
-    color: colors.$primary-color-1;
+    background-color: var(--color-background);
+    color: var(--color-text);
 
-    @include type-styles.body;
+    @extend %body-large;
 }

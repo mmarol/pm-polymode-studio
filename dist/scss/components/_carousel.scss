@@ -1,0 +1,63 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+
+.carousel__container {
+}
+
+.carousel__image {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.project__carousels {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.carousel__container {
+    position: relative;
+}
+
+.project__carousel,
+.research__carousel {
+    height: 100vh;
+    position: relative;
+    img,
+    video {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    iframe {
+        width: calc(100vw);
+        height: calc(56.25vw);
+        box-sizing: border-box;
+        padding: var(--spacing-xl);
+    }
+}
+
+.carousel__arrows {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.carousel__arrow--left {
+}
+
+.carousel__arrow--right {
+}
+
+// .slick-slide {
+//     iframe {
+//         width: calc(100vw);
+//         height: calc(56.25vw);
+//         box-sizing: border-box;
+//         padding: $tb-calc-space $lr-space;
+//         padding: var(--spacing-xl);
+//     }
+// }

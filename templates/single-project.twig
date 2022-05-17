@@ -1,0 +1,90 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<main class="project">
+
+		<article class="project__details">
+			<section class="project__information">
+				<h1 class="project__title">{{ post.title }}<br>{{ post.subtitle }}</h1>
+				{{ post.meta('project_description') }}
+			</section>
+			<aside class="project__deliverable-details">
+				<div class="project__deliverable-buttons">
+					{% for deliverable in post.meta('deliverables') %}
+
+						{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
+						{% if loop.index == 1 %}
+							<button class="project__deliverable-button project__deliverable-button--active" data-for-tab="{{ loop.index }}" data-hash-target="{{ hash_value }}">{{ deliverable.type.name }}</button>
+						{% else %}
+							<button class="project__deliverable-button" data-for-tab="{{ loop.index }}" data-hash-target="{{ hash_value }}">{{ deliverable.type.name }}</button>
+						{% endif %}
+					{% endfor %}
+				</div>
+				{% for deliverable in post.meta('deliverables') %}
+					{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
+					{% if loop.index == 1 %}
+						<div id="{{ hash_value }}" class="project__deliverable-info project__deliverable-content project__deliverable-content--active" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
+					{% else %}
+						<div id="{{ hash_value }}" class="project__deliverable-info project__deliverable-content" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
+					{% endif %}
+
+				{% endfor %}
+			</aside>
+			<section class="project__carousels">
+				{% for deliverable in post.meta('deliverables') %}
+					{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
+					{% if loop.index == 1 %}
+						<div class="carousel__container project__deliverable-content project__deliverable-content--active" data-tab="{{ loop.index }}">
+						{% else %}
+							<div class="carousel__container project__deliverable-content" data-tab="{{ loop.index }}">
+							{% endif %}
+							<div class="project__carousel project__carousel--{{ loop.index }}">
+								{% for media in deliverable.carousel %}
+									{% if media.image_or_video == 'Image' %}
+										<img class="carousel__image" src="{{ media.image.url }}" alt="{{ media.image.alt }}">
+									{% elseif media.image_or_video == 'Video' and media.video %}
+										{{ media.video }}
+									{% endif %}
+								{% endfor %}
+							</div>
+							<div class="carousel__arrows">
+								<div id="project__arrow--left--{{ loop.index }}" class="carousel__arrow carousel__arrow--left">{{ source( directory ~ "/dist/img/arrow-left.svg") }}</div>
+								<div id="project__arrow--right--{{ loop.index }}" class="carousel__arrow carousel__arrow--right">{{ source( directory ~ "/dist/img/arrow-right.svg") }}</div>
+							</div>
+						</div>
+					{% endfor %}
+				</section>
+			</article>
+			{% if post.poetic_research_description %}
+				{% set number_of_words = post.meta('poetic_research_description')|split(' ')|length %}
+				<article class="project__research">
+					<h3 class="research__title">{{ post.poetic_research_title }}</h3>
+					<h2 class="research__subtitle">{{ post.project_specific_title }}</h2>
+					{% if number_of_words > 100 %}
+						<div class="research__description research__two-columns">
+							{{ post.meta('poetic_research_description') }}
+						</div>
+					{% else %}
+						<div class="research__description research__one-column">
+							{{ post.meta('poetic_research_description') }}
+						</div>
+					{% endif %}
+					<div class="carousel__container">
+						<div class="research__carousel">
+							{% for media in post.meta('carousel') %}
+								{% if media.image_or_video == 'Image' %}
+									<img class="carousel__image" src="{{ media.image.url }}" alt="{{ media.image.alt }}">
+								{% elseif media.image_or_video == 'Video' and media.video %}
+									{{ media.video }}
+								{% endif %}
+							{% endfor %}
+						</div>
+						<div class="carousel__arrows">
+							<div id="research__arrow--left" class="carousel__arrow carousel__arrow--left">{{ source( directory ~ "/dist/img/arrow-left.svg") }}</div>
+							<div id="research__arrow--right" class="carousel__arrow carousel__arrow--right">{{ source( directory ~ "/dist/img/arrow-right.svg") }}</div>
+						</div>
+					</div>
+				</article>
+			{% endif %}
+		</main>
+	{% endblock %}

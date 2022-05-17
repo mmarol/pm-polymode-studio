@@ -1,0 +1,91 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.project {
+    padding: var(--spacing-xl);
+}
+
+.project__details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project__information {
+    @include mixins.columns(4, 1);
+    @extend %body-large;
+
+    a {
+        @extend %internal-link;
+    }
+
+    a[target="_blank"] {
+        @extend %external-link;
+    }
+}
+
+.project__title {
+    @extend %heading-primary;
+}
+
+.project__deliverable-details {
+    @include mixins.columns(3);
+}
+
+.project__deliverable-buttons {
+    overflow: hidden;
+    margin-top: var(--spacing-s);
+}
+
+.project__deliverable-button {
+    @extend %button;
+}
+
+.project__deliverable-button--active {
+    color: var(--color-primary-1) !important;
+}
+
+.project__deliverable-content {
+    display: none;
+}
+
+.project__deliverable-content--active {
+    display: block;
+}
+
+.project__deliverable-info {
+}
+
+.project__carousels {
+}
+
+.project__research {
+}
+
+.research__title {
+    @extend %heading-tertiary;
+    margin-top: var(--spacing-xxl);
+    margin-bottom: var(--spacing-m);
+}
+
+.research__subtitle {
+    @extend %heading-secondary;
+    margin-top: var(--spacing-xxl);
+    margin-bottom: var(--spacing-m);
+}
+
+.research__description {
+    p {
+        margin: 0;
+    }
+}
+
+.research__two-columns {
+    columns: 2;
+    grid-column-gap: var(--spacing-xxl);
+    column-gap: var(--spacing-xxl);
+}
+
+.research__one-column {
+    @include mixins.columns(4, 1);
+}

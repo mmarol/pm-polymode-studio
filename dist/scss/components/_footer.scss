@@ -1,0 +1,21 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-m) var(--spacing-xl);
+    z-index: 100;
+    background: linear-gradient(var(--color-transparent), var(--color-background) 50%);
+    box-sizing: border-box;
+}
+
+.footer__item {
+    @extend %footer;
+}
+
+.footer__link {
+    margin-right: var(--spacing-xs);
+    @extend %internal-link;
+
+    &[target="_blank"] {
+        @extend %external-link;
+    }
+}

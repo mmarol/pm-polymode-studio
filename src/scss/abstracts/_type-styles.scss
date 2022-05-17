@@ -1,19 +1,243 @@
-// @import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Yatra+One&display=swap");
+// @use "./variables";
+// @use "../utilities/mixins";
+@use "../abstracts/variables";
 
-@mixin heading {
+/*
+Font declarations
+*/
+@font-face {
+    font-family: "PolymodeSans-Var";
+    src: url("../fonts/PolymodeVar-Roman.woff2") format("woff2 supports variations"),
+        url("../fonts/PolymodeVar-Roman.woff2") format("woff2-variations"),
+        url("../fonts/PolymodeVar-Roman.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+    font-style: normal;
 }
 
-@mixin subheading {
+@font-face {
+    font-family: "PolymodeSans-Var";
+    src: url("../fonts/PolymodeVar-Roman.woff2") format("woff2 supports variations"),
+        url("../fonts/PolymodeVar-Roman.woff2") format("woff2-variations"),
+        url("../fonts/PolymodeVar-Roman.ttf") format("truetype-variations");
+    font-weight: 100 1000;
+    font-style: italic;
 }
 
-@mixin button {
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
-@mixin body {
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-Italic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
 }
 
-@mixin nav-item {
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-Bold.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
 }
 
-@mixin nav-title {
+@font-face {
+    font-family: "ActingBasic";
+    src: url("../fonts/Polymode0000ActingBasic-BoldItalic.woff2") format("woff2"),
+        url("../fonts/Polymode0000ActingBasic-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Opulence";
+    src: url("../fonts/Polymode1000Opulence.woff2") format("woff2"),
+        url("../fonts/Polymode1000Opulence.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Opulence";
+    src: url("../fonts/Polymode1000Opulence-Bold.woff2") format("woff2"),
+        url("../fonts/Polymode1000Opulence-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/*
+Type styles
+This uses the type size mixin and variables defined in _type-sizes.scss
+*/
+
+%nav-title {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    background-image: var(--color-gradient);
+    background-clip: text;
+    color: transparent;
+    font-variation-settings: "RLNS" 0;
+}
+
+%nav-title-alt {
+    font-family: "PolymodeSans-Var", "Opulence", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    background-image: var(--color-gradient);
+    background-clip: text;
+    color: transparent;
+    font-variation-settings: "RLNS" 1000;
+}
+
+%nav-title-page {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xl);
+    line-height: 100%;
+    letter-spacing: -1px;
+    color: var(--color-text);
+}
+
+%nav-item {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xxl);
+    line-height: 100%;
+    letter-spacing: -1px;
+    font-variation-settings: "RLNS" 0;
+}
+
+%nav-item-alt {
+    font-family: "PolymodeSans-Var", "Opulence", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xxl);
+    line-height: 100%;
+    letter-spacing: -1px;
+    font-variation-settings: "RLNS" 1000;
+}
+
+%heading-primary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xl);
+    line-height: 120%;
+    color: var(--color-text);
+}
+
+%heading-secondary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-l);
+    line-height: 120%;
+    color: var(--color-text);
+}
+
+%heading-tertiary {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-m);
+    line-height: 120%;
+    color: var(--color-text);
+}
+
+%body-large {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-m);
+    line-height: 130%;
+    color: var(--color-text);
+}
+
+%body-small {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-s);
+    line-height: 130%;
+    color: var(--color-text);
+}
+
+%tag-large {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-l);
+    line-height: 100%;
+    color: var(--color-primary-1);
+}
+
+%tag-small {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-s);
+    line-height: 100%;
+    color: var(--color-primary-1);
+}
+
+%button {
+    font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
+    font-weight: bold;
+    font-size: var(--type-m);
+    line-height: 100%;
+    color: var(--color-text);
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 var(--spacing-xs) 0 0;
+    margin: 0;
+
+    &:hover {
+        color: var(--color-primary-1);
+    }
+
+    &:active {
+        color: var(--color-primary-1);
+    }
+}
+
+%footer {
+    font-family: "ActingBasic", sans-serif;
+    font-weight: normal;
+    font-size: var(--type-xs);
+    line-height: 130%;
+    color: var(--color-text);
+}
+
+%internal-link {
+    color: var(--color-primary-2);
+    transition: color 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-primary-1);
+    }
+}
+
+%external-link {
+    color: var(--color-secondary-2);
+    transition: color 0.2s ease;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-secondary-1);
+    }
+
+    &::after {
+        content: "↗";
+        display: inline-block;
+        // margin-left: var(--spacing-xxs);
+    }
+}
+
+%antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }

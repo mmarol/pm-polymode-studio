@@ -1,0 +1,49 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<main class="about">
+		<article class="studio">
+			<section class="studio__description">
+				<div class="studio__description-column">
+					{{ page.meta('studio_description') }}
+				</div>
+			</section>
+			<section class="studio__contact">
+				<aside class="studio__contact-column">{{ page.meta('location_1') }}</aside>
+				<aside class="studio__contact-column">{{ page.meta('location_2') }}</aside>
+				<aside class="studio__contact-column">
+					<p class="studio__contact-info">
+						<span class="studio__contact-prefix">T</span>
+						<a href="tel:{{ page.telephone|trim|replace({'(': '', ')': '', ' ': '', '.': '', '-': ''}) }}">{{ page.telephone }}</a>
+					</p>
+					<p class="studio__contact-info">
+						<span class="studio__contact-prefix">E</span>
+						<a href="mailto:{{ page.email }}">{{ page.email }}</a>
+					</p>
+				</aside>
+			</section>
+		</article>
+		<article class="poetic-research">
+			<h2 class="poetic-research__title">{{ page.poetic_research_title }}</h2>
+			{{ page.meta('poetic_research_description') }}
+		</article>
+		<article class="people">
+			<div class="person__spacer"></div>
+			{% for person in page.meta('people') %}
+				<article class="person person--{{ person.image_size|lower }}">
+					<figure class="person__headshot">
+						<img src="{{ person.meta('headshot').url }}" alt="{{ person.meta('headshot').alt }}">
+					</figure>
+					<section class="person__primary-information">
+						<h2 class="person__name">{{ person.title }}</h2>
+						<p class="person__title">{{ person.job_title }}</p>
+					</section>
+					<button class="person__show person__show--closed"></button>
+					<section class="person__secondary-information person__secondary-information--closed">
+						{{ person.meta('bio') }}
+					</section>
+				</article>
+			{% endfor %}
+		</article>
+	</main>
+{% endblock %}

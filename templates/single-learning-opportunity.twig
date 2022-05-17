@@ -1,0 +1,29 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<article class="opportunity__details">
+		<section class="opportunity__information">
+			<div class="opportunity__tags">
+				{% for type in post.meta('type_of_opportunity') %}
+					<p class="opportunity__tag">{{ type.name }}</p>
+				{% endfor %}
+			</div>
+			<h1 class="opportunity__title">{{ post.title }}<br>{{ post.subtitle }}</h1>
+			{{ post.meta('description') }}
+			{% for link_object in post.meta('links') %}
+				{% if link_object.link.target == "_blank" %}
+					{% set link_class = "external" %}
+				{% else %}
+					{% set link_class = "internal" %}
+				{% endif %}
+				<a href="{{ link_object.link.url }}" class="opportunity__link opportunity__{{ link_class }}" target="{{ link_object.link.target }}">{{ link_object.link.title }}</a>
+			{% endfor %}
+		</section>
+		<section class="opportunity__hero">
+			<figure class="opportunity__image">
+				<img src="{{ post.meta('image').url }}" alt="{{ post.meta('image').alt }}">
+				<figcaption class="opportunity__caption">{{ post.meta('image').caption }}</figcaption>
+			</figure>
+		</section>
+	</article>
+{% endblock %}

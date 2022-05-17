@@ -1,0 +1,105 @@
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+@use "../utilities/mixins";
+
+.learn__grid {
+    padding: var(--spacing-xl);
+}
+
+.learn__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    p {
+        margin: 0;
+    }
+}
+
+.learn__short-description {
+    @include mixins.columns(4);
+    @extend %heading-secondary;
+}
+
+.learn__long-description {
+    @include mixins.columns(4);
+    @extend %body-large;
+}
+
+.opportunities {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    * {
+        transition: all 0.2s ease;
+    }
+}
+
+.opportunity {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-bottom: var(--spacing-xl);
+    box-sizing: border-box;
+    flex-basis: calc(50% - var(--spacing-xl));
+    width: calc(50% - var(--spacing-xl));
+
+    &:nth-child(3) {
+        margin-top: var(--spacing-xxxxl);
+    }
+}
+
+.opportunity__spacer {
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
+}
+
+.opportunity__tags {
+}
+
+.opportunity__tag {
+    @extend %tag-small;
+    margin: 0 var(--spacing-xs) 0 0;
+    display: inline-block;
+}
+
+.opportunity__title {
+    @extend %heading-primary;
+    margin: var(--spacing-xs) 0 var(--spacing-m) 0;
+}
+
+.opportunity__subtitle {
+    @extend %heading-primary;
+    font-style: italic;
+}
+
+.opportunity__image {
+    width: 100%;
+    margin-bottom: var(--spacing-s);
+}
+
+.opportunity__description {
+    @extend %body-large;
+    width: 100%;
+
+    a {
+        @extend %internal-link;
+    }
+
+    a[target="_blank"] {
+        @extend %external-link;
+    }
+}
+
+.opportunity__link {
+}
+
+.opportunity__link--external {
+    @extend %external-link;
+}
+
+.opportunity__link--internal {
+    @extend %internal-link;
+}

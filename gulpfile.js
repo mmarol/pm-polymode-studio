@@ -23,7 +23,7 @@ function browserSyncServer(cb) {
 	browserSync.init({
 		// notify: false, // disables browsersync notification in browser
 		// open: false, // doesn't open a new browser window on start
-		proxy: "basic-wordpress-setup.local",
+		proxy: "https://pm-polymode-studio.local",
 	});
 	cb();
 }
@@ -92,7 +92,7 @@ function scripts(cb) {
 function images(cb) {
 	src(`${origin}/img/**/*.{jpg,jpeg,png,svg,gif}`)
 		.pipe(gulpif(PRODUCTION, imagemin()))
-		.pipe(dest("dist/images"));
+		.pipe(dest("dist/img"));
 	cb();
 }
 
@@ -114,8 +114,8 @@ function watcher(cb) {
 	);
 	watch([
 		`${origin}/**/*`,
-		`!${origin}/{images, js, scss}`,
-		`!${origin}/{images, js, scss}/**/*`,
+		`!${origin}/{img, js, scss}`,
+		`!${origin}/{img, js, scss}/**/*`,
 	]).on("change", series(copy, browserSyncReload));
 	watch([`**/*.php`, `**/*.twig`], series(browserSyncReload));
 	cb();
