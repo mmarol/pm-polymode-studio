@@ -3,7 +3,20 @@
 @use "../utilities/mixins";
 
 .learn__grid {
-    padding: var(--spacing-xl);
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
 }
 
 .learn__header {
@@ -17,13 +30,39 @@
 }
 
 .learn__short-description {
-    @include mixins.columns(4);
     @extend %heading-secondary;
+    margin-bottom: var(--spacing-m);
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(7);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
 }
 
 .learn__long-description {
-    @include mixins.columns(4);
     @extend %body-large;
+    margin-bottom: var(--spacing-m);
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(8);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(7);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
 }
 
 .opportunities {
@@ -43,12 +82,21 @@
     align-content: flex-start;
     padding-bottom: var(--spacing-xl);
     box-sizing: border-box;
-    flex-basis: calc(50% - var(--spacing-xl));
-    width: calc(50% - var(--spacing-xl));
+    flex-basis: 100%;
+    width: 100%;
 
-    &:nth-child(3) {
-        margin-top: var(--spacing-xxxxl);
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc(50% - var(--spacing-xl));
+        width: calc(50% - var(--spacing-xl));
+
+        &:nth-child(3) {
+            margin-top: var(--spacing-xxxxl);
+        }
     }
+}
+
+.opportunity__anchor {
+    margin-top: calc(var(--spacing-xxl) * -1);
 }
 
 .opportunity__spacer {
@@ -63,6 +111,9 @@
     @extend %tag-small;
     margin: 0 var(--spacing-xs) 0 0;
     display: inline-block;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .opportunity__title {

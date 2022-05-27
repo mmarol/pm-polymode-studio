@@ -1,34 +1,41 @@
 import $ from "jquery";
 import "slick-carousel/slick/slick";
+import imagesLoaded from "imagesloaded";
 
-function setupSliders() {
-	const sliders = $(".project__carousel");
-	sliders.each(function (index) {
+export { setupSliders, setupTabs };
+
+function setupSliders(carouselItem, arrowLeftId, arrowRightId, variableWidth) {
+	let arrowLeftObject;
+	let arrowRightObject;
+	let carouselSize = $(carouselItem).size();
+	// for each carousel
+	$(carouselItem).each(function (index) {
+		// add suffix to the arrow id if there are more than one of a carousel type
+		if (carouselSize > 1) {
+			arrowLeftObject = $(arrowLeftId + "--" + (index + 1));
+			arrowRightObject = $(arrowRightId + "--" + (index + 1));
+		} else {
+			arrowLeftObject = $(arrowLeftId);
+			arrowRightObject = $(arrowRightId);
+		}
+		// initiate slider
 		$(this).slick({
 			infinite: true,
-			variableWidth: false,
+			variableWidth: variableWidth,
 			adaptiveHeight: false,
 			dots: true,
-			prevArrow: $("#project__arrow--left--" + (index + 1)),
-			nextArrow: $("#project__arrow--right--" + (index + 1)),
+			prevArrow: arrowLeftObject,
+			nextArrow: arrowRightObject,
+			centerMode: true,
 		});
-	});
-
-	$(".research__carousel").slick({
-		infinite: true,
-		variableWidth: false,
-		adaptiveHeight: false,
-		dots: true,
-		prevArrow: $("#research__arrow--left"),
-		nextArrow: $("#research__arrow--right"),
 	});
 }
 
-function setupTabs() {
+function setupTabs(buttons, content) {
 	// get all tab buttons
-	let tabButtons = $(".project__deliverable-button");
+	let tabButtons = $(buttons);
 	// get all tab content
-	let tabContent = $(".project__deliverable-content");
+	let tabContent = $(content);
 	// on clicking a button
 	tabButtons.on("click", function () {
 		// make record of the button
@@ -44,40 +51,16 @@ function setupTabs() {
 			// if the content data attribute matches the tab attribute
 			if (tabContentData == tabButtonData) {
 				// add active class to the button
-				tabButton.addClass("project__deliverable-button--active");
+				tabButton.addClass("active");
 				// remove active class to the button
-				tabButton.siblings().removeClass("project__deliverable-button--active");
+				tabButton.siblings().removeClass("active");
 				// add active class to the content item
-				tabContent.addClass("project__deliverable-content--active");
+				tabContent.addClass("active");
 				// remove active class to the content item
-				tabContent
-					.siblings()
-					.removeClass("project__deliverable-content--active");
-				$(".project__carousel--" + tabContentData).slick("refresh");
+				tabContent.siblings().removeClass("active");
 			}
 		});
+
+		$(".project__carousel--" + tabButtonData).slick("refresh");
 	});
 }
-
-// when the DOM loads
-$(window).on("load", function () {
-	// run the tab setup function
-	setupTabs();
-	setupSliders();
-	// if the url has a hash
-	if (window.location.hash) {
-		console.log(window.location.hash);
-		// scroll to the top of the page
-		setTimeout(function () {
-			window.scrollTo(0, 0);
-		}, 1);
-		// get the hash value
-		let hash = window.location.hash.replace("#", "");
-		// get the related button
-		let buttonToActivate = $(
-			".project__deliverable-button[data-hash-target='" + hash + "']"
-		);
-		// trigger a click on the button
-		buttonToActivate.trigger("click");
-	}
-});

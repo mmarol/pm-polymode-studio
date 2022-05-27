@@ -4,23 +4,27 @@
 			<button id="header__hamburger--open" class="header__hamburger show" aria-label="Show Navigation Menu" aria-expanded="false" tabindex="0">{{ source( directory ~ "/dist/img/menu__open.svg") }}</button>
 			<button id="header__hamburger--close" class="header__hamburger" aria-label="Hide Navigation Menu">{{ source( directory ~ "/dist/img/menu__close.svg") }}</button>
 
-			{% set isHome = false %}
-			{% set pageTitle = "" %}
-			{% for item in items %}
-				{% if item._menu_item_object_id == "23" %}
-					{% set isHome = true %}
-					{% set pageTitle = item.post_title %}
-				{% endif %}
-				{% if item.current == true %}
-					{% set pageTitle = item.post_title %}
-				{% endif %}
-			{% endfor %}
+			{# {% set isHome = false %}
+												{% set pageTitle = "" %}
+												{% for item in items %}
+													{% if item._menu_item_object_id == "23" %}
+														{% set isHome = true %}
+														{% set pageTitle = item.post_title %}
+													{% endif %}
+													{% if item.current == true %}
+														{% set pageTitle = item.post_title %}
+													{% endif %}
+												{% endfor %} #}
 
 			{% if function('is_front_page') %}
-				<div class="header__logo">Polymode</div>
+				<div class="header__logo">
+					<a href="{{ site.url }}">Polymode</a>
+				</div>
 			{% else %}
-				<div class="header__logo">Polymode</div>
-				<div class="header__page-title">{{ pageTitle }}</div>
+				<div class="header__logo">
+					<a href="{{ site.url }}">Polymode</a>
+				</div>
+				<div class="header__page-title show">{{ page_title }}</div>
 			{% endif %}
 
 		</div>

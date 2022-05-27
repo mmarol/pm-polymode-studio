@@ -3,7 +3,7 @@
 $args = array(
     'post_type'         => array('project', 'learning-opportunity'),
     'posts_per_page'    => -1,
-    'orderby'           => 'rand',
+    'orderby'           => 'date',
     'order'             => 'ASC'
 );
 

@@ -28,7 +28,13 @@ Usage Example:
 The arguments can be any of the variable key names in ../abstracts/_responsize-sizes.scss.
 -------------------------------------------------------- */
 @mixin columns($widthColNums, $marginColNums: 0) {
-    flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
-    width: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
-    margin-right: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + var(--grid-col-gutter));
+    @if $widthColNums < 8 {
+        flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+        width: calc(($widthColNums / var(--grid-col-num) * 100%) - var(--grid-col-gutter));
+        margin-right: calc(($marginColNums * calc((100% / var(--grid-col-num)))) + var(--grid-col-gutter));
+    } @else {
+        flex-basis: calc(($widthColNums / var(--grid-col-num) * 100%));
+        width: calc(($widthColNums / var(--grid-col-num) * 100%));
+        margin-right: 0;
+    }
 }

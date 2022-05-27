@@ -4,12 +4,13 @@ let menuOpen = $("#header__hamburger--open");
 let menuClose = $("#header__hamburger--close");
 let menu = $(".header__secondary");
 let menuLogo = $(".header__logo");
+let pageTitle = $(".header__page-title");
 let showClass = "show";
-console.log(menuOpen);
 
 function openMenu() {
 	menuOpen.attr("aria-expanded", "true");
 	menuOpen.removeClass(showClass);
+	pageTitle.removeClass(showClass);
 	menuClose.addClass(showClass);
 	menuLogo.addClass(showClass);
 	menu.addClass(showClass);
@@ -18,13 +19,13 @@ function openMenu() {
 function closeMenu() {
 	menuOpen.attr("aria-expanded", "false");
 	menuOpen.addClass(showClass);
+	pageTitle.addClass(showClass);
 	menuClose.removeClass(showClass);
 	menuLogo.removeClass(showClass);
 	menu.removeClass(showClass);
 }
 
 menuOpen.on("click", function () {
-	console.log("clicked the hamburger");
 	openMenu();
 });
 

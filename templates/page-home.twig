@@ -5,19 +5,25 @@
 {% block content %}
 	<main class="project-grid">
 		<div class="project-grid__spacer"></div>
-		{% for item in items %}
+		{% for item in page.meta('projects_and_learning_opportunities') %}
+			{% if item.post_type == "project" %}
+				{% set item_url = item.link %}
+			{% elseif item.post_type == "learning-opportunity" %}
+				{% set item_url = '/learn/#' ~ item.custom_anchor %}
+			{% endif %}
 			<article class="project-grid__item project-grid__item--{{ item.homepage_size|lower }}">
 				<figure class="project-grid__image-container">
-					<a href="{{ item.link }}" class="project-grid__link">
-						<img src="{{ item.meta('thumbnail_image').url }}" alt="{{ item.meta('thumbnail_image').alt }}" class="project-grid__image"/>
+					<a href="{{ item_url }}" class="project-grid__link">
+						<img class="project-grid__image" src="{{ Image(item.thumbnail_image).src }}" alt="{{ Image(item.thumbnail_image).alt }}" srcset="{{ Image(item.thumbnail_image).srcset }}"/>
 						<h2 class="project-grid__title project-grid__title--{{ item.homepage_size|lower }}">{{ item.title }}
 						</h2>
 					</a>
 				</figure>
 				{% for deliverable in item.meta('deliverables') %}
-					<a href="{{ item.link }}#{{ deliverable.type.name|replace({' ': '-'})|lower }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
+					<a href="{{ item_url }}#{{ deliverable.type.name|replace({' ': '-'})|lower }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
 				{% endfor %}
 			</article>
 		{% endfor %}
+
 	</main>
 {% endblock %}

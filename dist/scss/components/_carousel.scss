@@ -1,5 +1,6 @@
 @use "../abstracts/type-styles";
 @use "../abstracts/variables";
+@use "../utilities/mixins";
 
 .carousel__container {
 }
@@ -10,32 +11,15 @@
     height: 100%;
 }
 
-.project__carousels {
-    flex-basis: 100%;
-    width: 100%;
+.carousel__image-loader {
+    // visibility: hidden;
+    &.show {
+        visibility: visible;
+    }
 }
 
 .carousel__container {
     position: relative;
-}
-
-.project__carousel,
-.research__carousel {
-    height: 100vh;
-    position: relative;
-    img,
-    video {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-    }
-
-    iframe {
-        width: calc(100vw);
-        height: calc(56.25vw);
-        box-sizing: border-box;
-        padding: var(--spacing-xl);
-    }
 }
 
 .carousel__arrows {
@@ -44,20 +28,37 @@
     top: 50%;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+
+    path {
+        transition: 0.3s;
+    }
+
+    svg {
+        width: var(--spacing-l);
+
+        @include mixins.respond-above(variables.$break-s) {
+            width: var(--spacing-xl);
+        }
+
+        @include mixins.respond-above(variables.$break-m) {
+            width: auto;
+        }
+    }
 }
 
 .carousel__arrow--left {
+    &:hover {
+        path {
+            fill: var(--color-primary-1);
+        }
+    }
 }
 
 .carousel__arrow--right {
+    &:hover {
+        path {
+            fill: var(--color-primary-1);
+        }
+    }
 }
-
-// .slick-slide {
-//     iframe {
-//         width: calc(100vw);
-//         height: calc(56.25vw);
-//         box-sizing: border-box;
-//         padding: $tb-calc-space $lr-space;
-//         padding: var(--spacing-xl);
-//     }
-// }

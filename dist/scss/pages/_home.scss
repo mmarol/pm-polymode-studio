@@ -1,11 +1,26 @@
 @use "../abstracts/type-styles";
 @use "../abstracts/variables";
+@use "../utilities/mixins";
 
 .project-grid {
-    padding: var(--spacing-xl);
     display: flex;
     flex-wrap: wrap;
     position: relative;
+
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
 
     * {
         transition: all 0.3s ease;
@@ -15,6 +30,8 @@
 .project-grid__spacer {
     width: var(--spacing-m);
     height: var(--spacing-m);
+    // width: 0;
+    // height: 0;
 }
 
 .project-grid__item {
@@ -22,20 +39,56 @@
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
     box-sizing: border-box;
-    flex-basis: calc(25% - var(--spacing-m) * 2);
-    width: calc(25% - var(--spacing-m) * 2);
-}
-
-.project-grid__item--large {
-    flex-basis: calc(50% - var(--spacing-m) * 3);
-    width: calc(50% - var(--spacing-m) * 3);
+    flex-basis: 100%;
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% / 3) - var(--spacing-m));
+        width: calc((100% / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 4) - var(--spacing-m));
+        width: calc((100% / 4) - var(--spacing-m));
+    }
 }
 
 .project-grid__item--small {
-    flex-basis: calc(25% - var(--spacing-m) * 2);
-    width: calc(25% - var(--spacing-m) * 2);
+    flex-basis: 100%;
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% / 3) - var(--spacing-m));
+        width: calc((100% / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 4) - var(--spacing-m));
+        width: calc((100% / 4) - var(--spacing-m));
+    }
+}
+
+.project-grid__item--large {
+    flex-basis: 100%;
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% * 2 / 3) - var(--spacing-m));
+        width: calc((100% * 2 / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
 }
 
 .project-grid__link {
@@ -45,7 +98,7 @@
     &:hover {
         .project-grid__title--large,
         .project-grid__title--small {
-            color: var(--color-secondary-1);
+            color: var(--color-primary-1);
             font-variation-settings: "RLNS" 750;
         }
 
@@ -82,14 +135,15 @@
 .project-grid__tag {
     padding-right: var(--spacing-xs);
     text-decoration: none;
+    color: var(--color-primary-2);
 
     &:hover {
-        color: var(--color-secondary-1);
+        color: var(--color-primary-1);
     }
 }
 
 .project-grid__tag--large {
-    @extend %tag-large;
+    @extend %tag-small;
 }
 
 .project-grid__tag--small {

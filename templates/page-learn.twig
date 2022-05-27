@@ -1,4 +1,5 @@
 {% extends "base.twig" %}
+{% set page_title = page.title %}
 
 {% block content %}
 	<main class="learn__grid">
@@ -14,6 +15,7 @@
 			<div class="opportunity__spacer"></div>
 			{% for opportunity in opportunities %}
 				<article class="opportunity">
+					<a id="{{ opportunity.custom_anchor }}" class="opportunity__anchor"></a>
 					<div class="opportunity__tags">
 						{% for type in opportunity.meta('type_of_opportunity') %}
 							<p class="opportunity__tag">{{ type.name }}</p>
@@ -24,7 +26,12 @@
 							<span class="opportunity__subtitle">{{ opportunity.subtitle }}</span>
 						{% endif %}
 					</h2>
-					<img src="{{ opportunity.meta('thumbnail_image').url }}" alt="{{ opportunity.meta('thumbnail_image').alt }}" class="opportunity__image">
+					{% if opportunity.embed %}
+						{{ opportunity.meta('embed') }}
+					{% else %}
+						<img src="{{ Image(opportunity.thumbnail_image).src }}" alt="{{ Image(opportunity.thumbnail_image).alt }}" srcset="{{ Image(opportunity.thumbnail_image).srcset }}" class="opportunity__image">
+					{% endif %}
+
 					<div class="opportunity__description">
 						{{ opportunity.meta('description') }}
 					</div>

@@ -1,5 +1,4 @@
-// @use "./variables";
-// @use "../utilities/mixins";
+@use "../utilities/mixins";
 @use "../abstracts/variables";
 
 /*
@@ -16,9 +15,9 @@ Font declarations
 
 @font-face {
     font-family: "PolymodeSans-Var";
-    src: url("../fonts/PolymodeVar-Roman.woff2") format("woff2 supports variations"),
-        url("../fonts/PolymodeVar-Roman.woff2") format("woff2-variations"),
-        url("../fonts/PolymodeVar-Roman.ttf") format("truetype-variations");
+    src: url("../fonts/PolymodeVar-Italic.woff2") format("woff2 supports variations"),
+        url("../fonts/PolymodeVar-Italic.woff2") format("woff2-variations"),
+        url("../fonts/PolymodeVar-Italic.ttf") format("truetype-variations");
     font-weight: 100 1000;
     font-style: italic;
 }
@@ -85,6 +84,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     background-clip: text;
     color: transparent;
     font-variation-settings: "RLNS" 0;
+    font-variant-numeric: oldstyle-nums;
 }
 
 %nav-title-alt {
@@ -96,6 +96,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     background-clip: text;
     color: transparent;
     font-variation-settings: "RLNS" 1000;
+    font-variant-numeric: oldstyle-nums;
 }
 
 %nav-title-page {
@@ -114,6 +115,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     line-height: 100%;
     letter-spacing: -1px;
     font-variation-settings: "RLNS" 0;
+    font-variant-numeric: oldstyle-nums;
 }
 
 %nav-item-alt {
@@ -123,14 +125,20 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     line-height: 100%;
     letter-spacing: -1px;
     font-variation-settings: "RLNS" 1000;
+    font-variant-numeric: oldstyle-nums;
 }
 
 %heading-primary {
     font-family: "PolymodeSans-Var", "ActingBasic", sans-serif;
     font-weight: normal;
-    font-size: var(--type-xl);
+    font-size: var(--type-l);
     line-height: 120%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
+    @include mixins.respond-above(variables.$break-m) {
+        font-size: var(--type-xl);
+    }
 }
 
 %heading-secondary {
@@ -139,6 +147,8 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-size: var(--type-l);
     line-height: 120%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
 }
 
 %heading-tertiary {
@@ -147,6 +157,8 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-size: var(--type-m);
     line-height: 120%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
+    font-variation-settings: "RLNS" 300;
 }
 
 %body-large {
@@ -155,6 +167,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-size: var(--type-m);
     line-height: 130%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
 }
 
 %body-small {
@@ -163,6 +176,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-size: var(--type-s);
     line-height: 130%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
 }
 
 %tag-large {
@@ -170,7 +184,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-weight: normal;
     font-size: var(--type-l);
     line-height: 100%;
-    color: var(--color-primary-1);
+    font-variant-numeric: oldstyle-nums;
 }
 
 %tag-small {
@@ -178,7 +192,6 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-weight: normal;
     font-size: var(--type-s);
     line-height: 100%;
-    color: var(--color-primary-1);
 }
 
 %button {
@@ -192,6 +205,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     background: transparent;
     padding: 0 var(--spacing-xs) 0 0;
     margin: 0;
+    font-variant-numeric: oldstyle-nums;
 
     &:hover {
         color: var(--color-primary-1);
@@ -208,12 +222,14 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     font-size: var(--type-xs);
     line-height: 130%;
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
 }
 
 %internal-link {
     color: var(--color-primary-2);
     transition: color 0.2s ease;
     text-decoration: none;
+    font-variant-numeric: oldstyle-nums;
 
     &:hover {
         color: var(--color-primary-1);
@@ -224,6 +240,7 @@ This uses the type size mixin and variables defined in _type-sizes.scss
     color: var(--color-secondary-2);
     transition: color 0.2s ease;
     text-decoration: none;
+    font-variant-numeric: oldstyle-nums;
 
     &:hover {
         color: var(--color-secondary-1);

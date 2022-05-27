@@ -24,10 +24,17 @@
 
 .header__primary {
     display: flex;
-    padding: var(--spacing-s) var(--spacing-s) var(--spacing-l) var(--spacing-s);
+    width: 100%;
+    justify-content: space-between;
     z-index: 20;
-    @include mixins.respond-above(variables.$break-m) {
+    box-sizing: border-box;
+    padding: var(--spacing-s) var(--spacing-s) var(--spacing-l) var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        justify-content: flex-start;
         padding: var(--spacing-s) var(--spacing-m) var(--spacing-l) var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        padding: var(--spacing-s) var(--spacing-l) var(--spacing-l) var(--spacing-l);
     }
     @include mixins.respond-above(variables.$break-l) {
         padding: var(--spacing-s) var(--spacing-xl) var(--spacing-l) var(--spacing-xl);
@@ -41,7 +48,8 @@
     border: none;
     cursor: pointer;
     display: none;
-    width: var(--spacing-l);
+    padding: 0;
+    position: relative;
 
     &.show {
         display: block;
@@ -50,12 +58,28 @@
     svg {
         margin-top: 1px;
         height: calc(var(--type-l) - 4px);
+        position: relative;
+        left: 0;
+        width: auto;
+    }
+
+    path {
+        fill: var(--color-primary-1);
+        transition: fill 0.3s ease;
+    }
+
+    &:hover {
+        path {
+            fill: var(--color-primary-2);
+        }
     }
 }
 
 .header__logo {
-    @extend %nav-title;
-    transition: 0.3s;
+    a {
+        @extend %nav-title;
+        transition: 0.3s;
+    }
 
     &.show {
         font-variation-settings: "RLNS" 1000;
@@ -66,6 +90,17 @@
     @extend %nav-title-page;
     padding-left: var(--spacing-xs);
     line-height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+
+    &.show {
+        opacity: 1;
+    }
+
+    @include mixins.respond-above(variables.$break-s) {
+        display: block;
+    }
 }
 
 .header__secondary {
@@ -79,7 +114,10 @@
     z-index: 10;
     box-sizing: border-box;
     background-color: var(--color-background-overlay);
-    display: none;
+    // display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
 
     @include mixins.respond-above(variables.$break-m) {
         padding: var(--spacing-xxl) var(--spacing-m);
@@ -89,7 +127,9 @@
     }
 
     &.show {
-        display: block;
+        // display: block;
+        visibility: visible;
+        opacity: 1;
     }
 }
 

@@ -4,6 +4,7 @@
 body {
     background-color: var(--color-background);
     color: var(--color-text);
+    font-variant-numeric: oldstyle-nums;
 
     @extend %body-large;
 }

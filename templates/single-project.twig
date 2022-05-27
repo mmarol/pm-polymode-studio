@@ -1,4 +1,10 @@
 {% extends "base.twig" %}
+{% set page_title = "" %}
+{% for page in pages %}
+	{% if page.id == 23 %}
+		{% set page_title = page.title %}
+	{% endif %}
+{% endfor %}
 
 {% block content %}
 	<main class="project">
@@ -14,7 +20,7 @@
 
 						{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
 						{% if loop.index == 1 %}
-							<button class="project__deliverable-button project__deliverable-button--active" data-for-tab="{{ loop.index }}" data-hash-target="{{ hash_value }}">{{ deliverable.type.name }}</button>
+							<button class="project__deliverable-button active" data-for-tab="{{ loop.index }}" data-hash-target="{{ hash_value }}">{{ deliverable.type.name }}</button>
 						{% else %}
 							<button class="project__deliverable-button" data-for-tab="{{ loop.index }}" data-hash-target="{{ hash_value }}">{{ deliverable.type.name }}</button>
 						{% endif %}
@@ -23,9 +29,9 @@
 				{% for deliverable in post.meta('deliverables') %}
 					{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
 					{% if loop.index == 1 %}
-						<div id="{{ hash_value }}" class="project__deliverable-info project__deliverable-content project__deliverable-content--active" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
+						<div class="project__deliverable-info project__deliverable-content active" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
 					{% else %}
-						<div id="{{ hash_value }}" class="project__deliverable-info project__deliverable-content" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
+						<div class="project__deliverable-info project__deliverable-content" data-tab="{{ loop.index }}">{{ deliverable.deliverable_details }}</div>
 					{% endif %}
 
 				{% endfor %}
@@ -34,14 +40,14 @@
 				{% for deliverable in post.meta('deliverables') %}
 					{% set hash_value = deliverable.type.name|replace({' ': '-'})|lower %}
 					{% if loop.index == 1 %}
-						<div class="carousel__container project__deliverable-content project__deliverable-content--active" data-tab="{{ loop.index }}">
+						<div class="carousel__container project__deliverable-content active" data-tab="{{ loop.index }}">
 						{% else %}
 							<div class="carousel__container project__deliverable-content" data-tab="{{ loop.index }}">
 							{% endif %}
 							<div class="project__carousel project__carousel--{{ loop.index }}">
 								{% for media in deliverable.carousel %}
 									{% if media.image_or_video == 'Image' %}
-										<img class="carousel__image" src="{{ media.image.url }}" alt="{{ media.image.alt }}">
+										<img class="carousel__image carousel__image-loader" src="{{ Image(media.image).src }}" alt="{{ Image(media.image).alt }}" srcset="{{ Image(media.image).srcset }}">
 									{% elseif media.image_or_video == 'Video' and media.video %}
 										{{ media.video }}
 									{% endif %}
@@ -58,8 +64,8 @@
 			{% if post.poetic_research_description %}
 				{% set number_of_words = post.meta('poetic_research_description')|split(' ')|length %}
 				<article class="project__research">
-					<h3 class="research__title">{{ post.poetic_research_title }}</h3>
-					<h2 class="research__subtitle">{{ post.project_specific_title }}</h2>
+					<h2 class="poetic-research__title">{{ post.poetic_research_title }}</h2>
+					<h3 class="research__subtitle">{{ post.project_specific_title }}</h3>
 					{% if number_of_words > 100 %}
 						<div class="research__description research__two-columns">
 							{{ post.meta('poetic_research_description') }}
@@ -69,13 +75,20 @@
 							{{ post.meta('poetic_research_description') }}
 						</div>
 					{% endif %}
-					<div class="carousel__container">
+					<div class="research__carousels carousel__container">
 						<div class="research__carousel">
 							{% for media in post.meta('carousel') %}
 								{% if media.image_or_video == 'Image' %}
-									<img class="carousel__image" src="{{ media.image.url }}" alt="{{ media.image.alt }}">
+									<figure class="research-carousel__image carousel__image-loader">
+										<img class="carousel__image" src="{{ Image(media.image).src }}" alt="{{ Image(media.image).alt }}" srcset="{{ Image(media.image).srcset }}">
+										{% if media.caption %}
+											<figcaption class="research-carousel__caption">{{ media.caption }}</figcaption>
+										{% endif %}
+									</figure>
 								{% elseif media.image_or_video == 'Video' and media.video %}
-									{{ media.video }}
+									<figure class="research-carousel__image">
+										{{ media.video }}
+									</figure>
 								{% endif %}
 							{% endfor %}
 						</div>

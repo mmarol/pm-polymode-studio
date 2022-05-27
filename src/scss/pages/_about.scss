@@ -3,17 +3,52 @@
 @use "../utilities/mixins";
 
 .about {
-    padding: var(--spacing-xl);
     display: flex;
     flex-wrap: wrap;
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
 }
 
 .studio {
-    @include mixins.columns(4);
-    margin-bottom: var(--spacing-xxl);
+    // @include mixins.columns(4);
+    // margin-bottom: var(--spacing-l);
+    columns: 1;
+
+    @include mixins.respond-above(variables.$break-s) {
+        columns: 2;
+        grid-column-gap: var(--spacing-l);
+        column-gap: var(--spacing-l);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        columns: 2;
+        grid-column-gap: var(--spacing-l);
+        column-gap: var(--spacing-l);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        columns: 1;
+        @include mixins.columns(4);
+        margin-bottom: var(--spacing-xxl);
+    }
 }
 
 .studio__description {
+    p {
+        margin: 0 0 var(--spacing-s) 0;
+    }
 }
 
 .studio__description-column {
@@ -30,10 +65,14 @@
 }
 
 .studio__contact-column {
-    flex-basis: calc((100% / 3) - var(--spacing-s));
-    flex-grow: 1;
-    flex-shrink: 1;
-    margin-right: var(--spacing-xs);
+    margin-right: var(--spacing-s);
+    margin-bottom: var(--spacing-s);
+
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 3) - var(--spacing-s));
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
 
     p {
         margin: 0;
@@ -50,12 +89,26 @@
 }
 
 .poetic-research {
-    @include mixins.columns(4);
+    margin-bottom: var(--spacing-l);
+    @include mixins.columns(8);
+
+    @include mixins.respond-above(variables.$break-s) {
+        @include mixins.columns(7);
+    }
+
+    @include mixins.respond-above(variables.$break-m) {
+        @include mixins.columns(6);
+    }
+
+    @include mixins.respond-above(variables.$break-l) {
+        @include mixins.columns(4);
+    }
 }
 
 .poetic-research__title {
     @extend %nav-title-alt;
     margin-top: var(--spacing-s);
+    display: inline-block;
 }
 
 .people {
@@ -76,8 +129,19 @@
     align-content: flex-start;
     padding-bottom: var(--spacing-xl);
     box-sizing: border-box;
-    flex-basis: calc(25% - var(--spacing-m) * 2);
-    width: calc(25% - var(--spacing-m) * 2);
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% / 3) - var(--spacing-m));
+        width: calc((100% / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 4) - var(--spacing-m));
+        width: calc((100% / 4) - var(--spacing-m));
+    }
 }
 
 .person__spacer {
@@ -86,8 +150,19 @@
 }
 
 .person--small {
-    flex-basis: calc(25% - var(--spacing-m) * 2);
-    width: calc(25% - var(--spacing-m) * 2);
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% / 3) - var(--spacing-m));
+        width: calc((100% / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 4) - var(--spacing-m));
+        width: calc((100% / 4) - var(--spacing-m));
+    }
 
     p {
         @extend %body-small;
@@ -95,8 +170,19 @@
 }
 
 .person--large {
-    flex-basis: calc(50% - var(--spacing-m) * 3);
-    width: calc(50% - var(--spacing-m) * 3);
+    width: 100%;
+    @include mixins.respond-above(variables.$break-s) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        flex-basis: calc((100% * 2 / 3) - var(--spacing-m));
+        width: calc((100% * 2 / 3) - var(--spacing-m));
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        flex-basis: calc((100% / 2) - var(--spacing-m));
+        width: calc((100% / 2) - var(--spacing-m));
+    }
 
     p {
         @extend %body-large;

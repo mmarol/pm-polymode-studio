@@ -1,10 +1,29 @@
+@use "../utilities/mixins";
+@use "../abstracts/type-styles";
+@use "../abstracts/variables";
+
 .footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: var(--spacing-m) var(--spacing-xl);
     z-index: 100;
     background: linear-gradient(var(--color-transparent), var(--color-background) 50%);
     box-sizing: border-box;
+
+    margin: var(--spacing-s);
+    padding-top: var(--spacing-s);
+    @include mixins.respond-above(variables.$break-s) {
+        margin: var(--spacing-m);
+        padding-top: var(--spacing-m);
+    }
+    @include mixins.respond-above(variables.$break-m) {
+        margin: var(--spacing-l);
+        padding-top: var(--spacing-l);
+    }
+    @include mixins.respond-above(variables.$break-l) {
+        margin: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
 }
 
 .footer__item {
