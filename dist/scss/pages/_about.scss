@@ -107,8 +107,12 @@
 
 .poetic-research__title {
     @extend %nav-title-alt;
-    margin-top: var(--spacing-s);
+    margin: var(--spacing-xl) 0 0 0;
     display: inline-block;
+
+    @include mixins.respond-above(variables.$break-l) {
+        margin: 0;
+    }
 }
 
 .people {

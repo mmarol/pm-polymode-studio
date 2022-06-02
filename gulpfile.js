@@ -23,7 +23,8 @@ function browserSyncServer(cb) {
 	browserSync.init({
 		// notify: false, // disables browsersync notification in browser
 		// open: false, // doesn't open a new browser window on start
-		proxy: "https://pm-polymode-studio.local",
+		proxy: "pm-polymode-studio.local",
+		https: true,
 	});
 	cb();
 }
@@ -42,7 +43,7 @@ function styles(cb) {
 	src(`${origin}/scss/style.scss`)
 		.pipe(gulpif(!PRODUCTION, sourcemaps.init()))
 		.pipe(sass().on("error", sass.logError))
-		.pipe(gulpif(PRODUCTION, postcss([autoprefixer])))
+		.pipe(gulpif(PRODUCTION, postcss([autoprefixer()])))
 		.pipe(
 			gulpif(
 				PRODUCTION,

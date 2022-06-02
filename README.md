@@ -1,32 +1,32 @@
-# Jay Marol’s starter theme.
+# Polymode 2022 theme
 
-This WordPress install is done through Local by Flywheel and has a few things already set up:
+This theme is built based on the Timber starter theme.
 
-- Basic file structure based on the Timber starter theme
-- Gulp setup for SCSS and JS compiling as well as BrowserSync reloading
-- Relevant node packages
-- Basic plugins installed in [plugins/](../../plugins/). These plugins include:
-  - [Admin Columns](https://wordpress.org/plugins/codepress-admin-columns/)
-  - [Admin Menu Editor](https://wordpress.org/plugins/admin-menu-editor/)
-  - [Advanced Custom Fields Pro](https://wordpress.org/plugins/advanced-custom-fields/) (this links to the free version)
-  - [Classic Editor](https://wordpress.org/plugins/classic-editor/)
-  - [Custom Post Type Cleanup](https://wordpress.org/plugins/custom-post-type-cleanup/)
-  - [Disable Comments](https://wordpress.org/plugins/disable-comments/)
-  - [Show Current Template](https://wordpress.org/plugins/show-current-template/)
-  - [Timber](https://wordpress.org/plugins/timber-library/)
-- An example custom post type. These are defined in [lib/](./lib/) and registered in [functions.php](./functions.php). The post type is set up to use [page-example-page.php](./page-example-page.php) as the archive template. This can be changed in [lib/custom-types.php](./lib/custom-types.php) in the `rewrite` rule.
-- An ACF options page for both the header and footer. This can be disabled in [functions.php](./functions.php) on lines 76 and 106-129.
-- A reorganized WordPress admin menu order.
+## Required WordPress plugins
 
-## First things first
+- [Advanced Custom Fields Pro](https://wordpress.org/plugins/advanced-custom-fields/) (this links to the free version)
+- [Advanced Custom Fields: Extended](https://wordpress.org/plugins/acf-extended/)
+- [Classic Editor](https://wordpress.org/plugins/classic-editor/)
+- [Timber](https://wordpress.org/plugins/timber-library/)
 
-1. Run `npm install` to install all relevant node packages
-2. Install [Composer](https://getcomposer.org/download/) in this theme folder if you do not have it installed already.
-3. Run `composer require timber/timber` to install Timber.
-4. Change the theme information in [style.css](./style.css) and replace [screenshot.png](./screenshot.png).
-5. Activate the theme in the CMS.
-6. Change the proxy URL in [gulpfile.js](./gulpfile.js) to match the locally served URL.
-7. Run `gulp` and make changes to a `scss`, `js`, `php` and `twig` file to make sure the site is being served at a BrowserSync URL and is reloading correctly.
+## Additional WordPress plugins
+
+- [Admin Menu Editor](https://wordpress.org/plugins/admin-menu-editor/)
+- [Disable Comments](https://wordpress.org/plugins/disable-comments/)
+- [Filebird](https://ninjateam.gitbook.io/filebird/)
+- [WP Migrate](https://deliciousbrains.com/wp-migrate-db-pro/)
+- [W3 Total Cache](https://www.boldgrid.com/w3-total-cache/)
+
+## Setting up the theme for editing
+
+1. Install all the plugins listed above
+2. If the ACF field groups are not set up, import the [ACF fields JSON file](./acf-fields.json) in the ACF/Tools panel of the CMS.
+3. In your terminal, go to the theme folder in the WordPress project
+4. Run `npm install` to install all relevant node packages
+5. Install [Composer](https://getcomposer.org/download/) in this theme folder if you do not have it installed already.
+6. Run `composer require timber/timber` to install Timber.
+7. Change the proxy URL in [gulpfile.js](./gulpfile.js) to match the locally served URL.
+8. Run `gulp` and make changes to a `scss`, `js`, `php` and `twig` file to make sure the site is being served at a BrowserSync URL and is reloading correctly.
 
 ## What's here?
 
@@ -34,7 +34,7 @@ This WordPress install is done through Local by Flywheel and has a few things al
 
 `src/scss/` is organized using the [7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern) and is using the newer [`@use` Sass rule](https://sass-lang.com/documentation/at-rules/use).
 
-`templates/` contains all of your Twig templates. These pretty much correspond 1 to 1 with the PHP files that respond to the WordPress template hierarchy.
+`templates/` contains all of your Twig templates. These correspond 1 to 1 with the PHP files that respond to the WordPress template hierarchy.
 
 `lib/` contains custom post type, menu, taxonomy and widget definition files
 

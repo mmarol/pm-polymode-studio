@@ -11,17 +11,32 @@
 			{% elseif item.post_type == "learning-opportunity" %}
 				{% set item_url = '/learn/#' ~ item.custom_anchor %}
 			{% endif %}
+
+			{% if item.homepage_size == "Small" %}
+				{% set resizeSize = 400 %}
+			{% elseif item.homepage_size == "Large" %}
+				{% set resizeSize = 800 %}
+			{% endif %}
+
 			<article class="project-grid__item project-grid__item--{{ item.homepage_size|lower }}">
 				<figure class="project-grid__image-container">
-					<a href="{{ item_url }}" class="project-grid__link">
-						<img class="project-grid__image" src="{{ Image(item.thumbnail_image).src }}" alt="{{ Image(item.thumbnail_image).alt }}" srcset="{{ Image(item.thumbnail_image).srcset }}"/>
+					<a
+						href="{{ item_url }}" class="project-grid__link">
+						{# <img class="project-grid__image" src="{{ Image(item.thumbnail_image).src|resize(resizeSize) }}" alt="{{ Image(item.thumbnail_image).alt }}" srcset="{{ Image(item.thumbnail_image).srcset }}"/> #}
+						<img class="project-grid__image lazyload" src="{{ Image(item.thumbnail_image).src|tojpg|resize(300) }}" alt="{{ Image(item.thumbnail_image).alt }}" type="image/jpg" data-src="{{ Image(item.thumbnail_image).src|tojpg|resize(resizeSize) }}" data-srcset="{{ Image(item.thumbnail_image).srcset }}" data-sizes="auto">
 						<h2 class="project-grid__title project-grid__title--{{ item.homepage_size|lower }}">{{ item.title }}
 						</h2>
+						<h3 class="project-grid__subtitle project-grid__subtitle--{{ item.homepage_size|lower }}">{{ item.subtitle }}</h3>
 					</a>
 				</figure>
-				{% for deliverable in item.meta('deliverables') %}
-					<a href="{{ item_url }}#{{ deliverable.type.name|replace({' ': '-'})|lower }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
-				{% endfor %}
+				{% if item.post_type == "project" %}
+					{% for deliverable in item.meta('deliverables') %}
+						<a href="{{ item_url }}#{{ deliverable.type.name|replace({' ': '-'})|lower }}" class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">{{ deliverable.type.name }}</a>
+					{% endfor %}
+				{% elseif item.post_type == "learning-opportunity" %}
+					<p class="project-grid__tag project-grid__tag--{{ item.homepage_size|lower }}">Learning</p>
+				{% endif %}
+
 			</article>
 		{% endfor %}
 

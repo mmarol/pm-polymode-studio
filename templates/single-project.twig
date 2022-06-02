@@ -47,7 +47,9 @@
 							<div class="project__carousel project__carousel--{{ loop.index }}">
 								{% for media in deliverable.carousel %}
 									{% if media.image_or_video == 'Image' %}
-										<img class="carousel__image carousel__image-loader" src="{{ Image(media.image).src }}" alt="{{ Image(media.image).alt }}" srcset="{{ Image(media.image).srcset }}">
+										<img
+										class="carousel__image carousel__image-loader lazyload" src="{{ Image(media.image).src|tojpg|resize(600) }}" alt="{{ Image(media.image).alt }}" data-sizes="auto" data-src="{{ Image(media.image).src|tojpg }}" data-srcset="{{ Image(media.image).srcset }}" type="image/jpg">
+										{# <img class="carousel__image carousel__image-loader" src="{{ Image(media.image).src|tojpg }}" alt="{{ Image(media.image).alt }}" srcset="{{ Image(media.image).srcset }}" type="image/jpg"> #}
 									{% elseif media.image_or_video == 'Video' and media.video %}
 										{{ media.video }}
 									{% endif %}
@@ -80,7 +82,9 @@
 							{% for media in post.meta('carousel') %}
 								{% if media.image_or_video == 'Image' %}
 									<figure class="research-carousel__image carousel__image-loader">
-										<img class="carousel__image" src="{{ Image(media.image).src }}" alt="{{ Image(media.image).alt }}" srcset="{{ Image(media.image).srcset }}">
+										<img
+										class="carousel__image lazyload" src="{{ Image(media.image).src|tojpg|resize(300) }}" alt="{{ Image(media.image).alt }}" type="image/jpg" data-src="{{ Image(media.image).src|tojpg|resize(600) }}" data-srcset="{{ Image(media.image).srcset }}" data-sizes="auto">
+										{# <img class="carousel__image" src="{{ Image(media.image).src|tojpg|resize(600) }}" alt="{{ Image(media.image).alt }}" type="image/jpg"> #}
 										{% if media.caption %}
 											<figcaption class="research-carousel__caption">{{ media.caption }}</figcaption>
 										{% endif %}
@@ -93,8 +97,8 @@
 							{% endfor %}
 						</div>
 						<div class="carousel__arrows">
-							<div id="research__arrow--left" class="carousel__arrow carousel__arrow--left">{{ source( directory ~ "/dist/img/arrow-left.svg") }}</div>
-							<div id="research__arrow--right" class="carousel__arrow carousel__arrow--right">{{ source( directory ~ "/dist/img/arrow-right.svg") }}</div>
+							<div id="research__arrow--left--1" class="carousel__arrow carousel__arrow--left">{{ source( directory ~ "/dist/img/arrow-left.svg") }}</div>
+							<div id="research__arrow--right--1" class="carousel__arrow carousel__arrow--right">{{ source( directory ~ "/dist/img/arrow-right.svg") }}</div>
 						</div>
 					</div>
 				</article>

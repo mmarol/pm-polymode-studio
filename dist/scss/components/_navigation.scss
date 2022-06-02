@@ -61,6 +61,14 @@
         position: relative;
         left: 0;
         width: auto;
+
+        @include mixins.respond-above(variables.$break-s) {
+            height: calc(var(--type-l) - 3px);
+        }
+
+        @include mixins.respond-above(variables.$break-m) {
+            height: calc(var(--type-l) - 1px);
+        }
     }
 
     path {

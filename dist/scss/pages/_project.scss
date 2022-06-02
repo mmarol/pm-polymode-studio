@@ -53,6 +53,10 @@
     @extend %heading-primary;
 }
 
+.project__subtitle {
+    @extend %heading-secondary;
+}
+
 .project__deliverable-details {
     @include mixins.columns(8);
     @include mixins.respond-above(variables.$break-s) {
@@ -123,6 +127,11 @@
         object-fit: contain;
         width: 100%;
         height: 100%;
+        padding: 0 var(--spacing-xs);
+
+        @include mixins.respond-above(variables.$break-s) {
+            padding: 0;
+        }
     }
 
     iframe {

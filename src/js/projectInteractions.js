@@ -11,13 +11,8 @@ function setupSliders(carouselItem, arrowLeftId, arrowRightId, variableWidth) {
 	// for each carousel
 	$(carouselItem).each(function (index) {
 		// add suffix to the arrow id if there are more than one of a carousel type
-		if (carouselSize > 1) {
-			arrowLeftObject = $(arrowLeftId + "--" + (index + 1));
-			arrowRightObject = $(arrowRightId + "--" + (index + 1));
-		} else {
-			arrowLeftObject = $(arrowLeftId);
-			arrowRightObject = $(arrowRightId);
-		}
+		arrowLeftObject = $(arrowLeftId + "--" + (index + 1));
+		arrowRightObject = $(arrowRightId + "--" + (index + 1));
 		// initiate slider
 		$(this).slick({
 			infinite: true,

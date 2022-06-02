@@ -1,6 +1,8 @@
 import $ from "jquery";
+import "lazysizes";
 
 import "./navigation";
+// import "./randomizePosition";
 import { randomize } from "./randomizeOrder";
 import { setupMasonry } from "./masonry";
 import { setupSliders, setupTabs } from "./projectInteractions";
@@ -14,7 +16,7 @@ $(document).on("ready", function () {
 	let projectSpacer = ".project-grid__spacer";
 	if (projectItem) {
 		// randomize order
-		randomize($(projectItem));
+		// randomize($(projectItem));
 		// apply masonry
 		setupMasonry(projectGrid, projectItem, projectSizer, projectSpacer);
 	}
@@ -48,7 +50,6 @@ $(document).on("ready", function () {
 			personSpacer
 		);
 	}
-	console.log(peopleMasonry);
 
 	// initialize tabs
 	// if the url has a hash

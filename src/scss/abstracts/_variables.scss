@@ -61,7 +61,7 @@ $break-l: 1024px;
     --type-m: 16px;
     --type-l: 20px;
     --type-xl: 24px;
-    --type-xxl: 36px;
+    --type-xxl: 30px;
     @include mixins.respond-above($break-s) {
         --type-xs: 12px;
         --type-s: 14px;
@@ -82,7 +82,7 @@ $break-l: 1024px;
         --type-xs: 12px;
         --type-s: 14px;
         --type-m: 18px;
-        --type-l: 28px;
+        --type-l: 24px;
         --type-xl: 34px;
         --type-xxl: 86px;
 

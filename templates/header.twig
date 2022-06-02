@@ -5,16 +5,16 @@
 			<button id="header__hamburger--close" class="header__hamburger" aria-label="Hide Navigation Menu">{{ source( directory ~ "/dist/img/menu__close.svg") }}</button>
 
 			{# {% set isHome = false %}
-												{% set pageTitle = "" %}
-												{% for item in items %}
-													{% if item._menu_item_object_id == "23" %}
-														{% set isHome = true %}
-														{% set pageTitle = item.post_title %}
-													{% endif %}
-													{% if item.current == true %}
-														{% set pageTitle = item.post_title %}
-													{% endif %}
-												{% endfor %} #}
+															{% set pageTitle = "" %}
+															{% for item in items %}
+																{% if item._menu_item_object_id == "23" %}
+																	{% set isHome = true %}
+																	{% set pageTitle = item.post_title %}
+																{% endif %}
+																{% if item.current == true %}
+																	{% set pageTitle = item.post_title %}
+																{% endif %}
+															{% endfor %} #}
 
 			{% if function('is_front_page') %}
 				<div class="header__logo">
@@ -36,7 +36,7 @@
 					{% set class = "" %}
 				{% endif %}
 				<li class="header__page {{ class }}">
-					<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+					<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}&#160;→</a>
 				</li>
 			{% endfor %}
 		</ul>
